@@ -22,15 +22,15 @@ int main() {
   double *solution1 = solvePivotingWithMult(copy);
   LIKWID_MARKER_STOP("Solve_1");
 
-  LIKWID_MARKER_START("Solve_2");
-  double *solution2 = solvePivotingWithoutMult(copy2);
-  LIKWID_MARKER_STOP("Solve_2");
-
-  LIKWID_MARKER_START("Solve_3");
-  double *solution3 = solveWithoutPivoting(copy3);
-  LIKWID_MARKER_STOP("Solve_3");
-
   LIKWID_MARKER_CLOSE;
+
+  // LIKWID_MARKER_START("Solve_2");
+  double *solution2 = solvePivotingWithoutMult(copy2);
+  // LIKWID_MARKER_STOP("Solve_2");
+
+  // LIKWID_MARKER_START("Solve_3");
+  double *solution3 = solveWithoutPivoting(copy3);
+  // LIKWID_MARKER_STOP("Solve_3");
 
   double *residue1 = calculateResidualVector(system, solution1);
   double *residue2 = calculateResidualVector(system, solution2);
