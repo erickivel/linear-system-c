@@ -1,7 +1,4 @@
 #!/bin/bash
 
-METRICA="FLOPS_DP"
-CPU=3
-
 make
-likwid-perfctr -C ${CPU} -g "FLOPS_DP" -m ./perfEG > LikwidFlops.log
+likwid-perfctr -C 0-3 -g "FLOPS_DP" ./perfEG > LikwidFlops.log
