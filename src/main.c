@@ -3,6 +3,7 @@
 #include <sys/time.h>
 
 #include "../include/linearSystem.h"
+#include <likwid.h>
 
 int main() {
   // Arrange
@@ -19,18 +20,28 @@ int main() {
   struct LinearSystem *copy2 = copyLinearSystem(system);
   struct LinearSystem *copy3 = copyLinearSystem(system);
 
+  LIKWID_MARKER_INIT;
+
   // Calculate
+  LIKWID_MARKER_START("Sol_1");
   gettimeofday(&start1, NULL);
   double *solution1 = solvePivotingWithMult(copy1);
   gettimeofday(&end1, NULL);
+  LIKWID_MARKER_STOP("Sol_1");
 
+  LIKWID_MARKER_START("Sol_2");
   gettimeofday(&start2, NULL);
   double *solution2 = solvePivotingWithoutMult(copy2);
   gettimeofday(&end2, NULL);
+  LIKWID_MARKER_STOP("Sol_2");
 
+  LIKWID_MARKER_STOP("Sol_3");
   gettimeofday(&start3, NULL);
   double *solution3 = solveWithoutPivoting(copy3);
   gettimeofday(&end3, NULL);
+  LIKWID_MARKER_STOP("Sol_3");
+
+  LIKWID_MARKER_CLOSE;
 
   double *residue1 = calculateResidualVector(system, solution1);
   double *residue2 = calculateResidualVector(system, solution2);

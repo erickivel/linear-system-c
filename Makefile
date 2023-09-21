@@ -5,7 +5,7 @@ INCDIR = ./include/
 
 CC			= gcc
 CFILES		= $(wildcard $(SRCDIR)/*.c)
-CFLAGS		= -Wall -Wextra -pedantic -std=c99 -O3 -mavx -march=native -DILKWID_PERFMON
+CFLAGS		= -Wall -Wextra -pedantic -O3 -mavx -march=native -DLIKWID_PERFMON
 LDFLAGS		= -I$(INCDIR) -I${LIKWID_INCLUDE}
 LBLAGS		= -L${LIKWID_LIB} -llikwid
 OBJFILES	= $(patsubst %.c, %.o, $(CFILES))
